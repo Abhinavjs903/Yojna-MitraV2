@@ -830,7 +830,8 @@
         <div class="nav-cta-group">
           <span class="badge-pill">Beta for Students</span>
           <button class="btn btn-ghost" type="button">Docs</button>
-          <button id="login-btn" class="btn btn-primary" type="button" onclick="document.getElementById('google-signin').click();">Sign in with Google</button>
+          <button onclick="loginWithGoogle()" class="btn btn-primary">Sign in with Google</button>
+
           <div id="user-profile" style="display: none; align-items: center; gap: var(--space-10); padding: var(--space-8); border-radius: var(--radius-full); background: rgba(255, 122, 47, 0.15); border: 1px solid rgba(255, 189, 105, 0.3);">
             <span id="user-email" style="font-size: 12px; color: var(--color-accent);"></span>
             <button id="logout-btn" class="btn btn-ghost" type="button" style="padding: 4px 12px; font-size: 11px;">Logout</button>
@@ -1562,6 +1563,35 @@ function renderIssues(){
       document.documentElement.style.setProperty("--mouse-x", mouseX + "px");
       document.documentElement.style.setProperty("--mouse-y", mouseY + "px");
     });
+  function loginWithGoogle() {
+  const clientId = "290504462887-3q9cus8sp9hfmp9pofsrogerd1p0g4fb.apps.googleusercontent.com"; // Replace with your OAuth Client ID
+  const redirectUri = "https://abhinavdiit.app.n8n.cloud/webhook/google-callback"; // Exact same as in Google Console
+
+  const url = `https://accounts.google.com/o/oauth2/v2/auth?` +
+              `client_id=${clientId}&` +
+              `redirect_uri=${encodeURIComponent(redirectUri)}&` +
+              `response_type=code&` +
+              `scope=openid%20email%20profile&` +
+              `access_type=offline&` +
+              `prompt=consent`;
+
+  window.location.href = url;
+}
+
+const url = new URLSearchParams(window.location.search);
+const token = url.get("token");
+
+if (token) {
+  localStorage.setItem("ym-token", token);
+  window.history.replaceState({}, "", "/");
+  renderLoggedInUser(token);
+}
+
+document.getElementById("login-btn").style.display = "none";
+document.getElementById("user-profile").style.display = "flex";
+document.getElementById("user-email").textContent = decoded.email;
+
+
   </script>
 </body>
 </html>
