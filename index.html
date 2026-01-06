@@ -1,1810 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YojnaMitra – Intelligent Student Finance Solutions</title>
-  <style>
-    :root {
-      /* Primitive Color Tokens */
-      --color-white: rgba(255, 255, 255, 1);
-      --color-black: rgba(0, 0, 0, 1);
-      --color-cream-50: rgba(252, 252, 249, 1);
-      --color-cream-100: rgba(255, 255, 253, 1);
-      --color-gray-200: rgba(245, 245, 245, 1);
-      --color-gray-300: rgba(167, 169, 169, 1);
-      --color-gray-400: rgba(119, 124, 124, 1);
-      --color-slate-500: rgba(98, 108, 113, 1);
-      --color-brown-600: rgba(94, 82, 64, 1);
-      --color-charcoal-700: rgba(31, 33, 33, 1);
-      --color-charcoal-800: rgba(38, 40, 40, 1);
-      --color-slate-900: rgba(19, 52, 59, 1);
-      --color-teal-300: rgba(50, 184, 198, 1);
-      --color-teal-400: rgba(45, 166, 178, 1);
-      --color-teal-500: rgba(33, 128, 141, 1);
-      --color-teal-600: rgba(29, 116, 128, 1);
-      --color-teal-700: rgba(26, 104, 115, 1);
-      --color-teal-800: rgba(41, 150, 161, 1);
-      --color-red-400: rgba(255, 84, 89, 1);
-      --color-red-500: rgba(192, 21, 47, 1);
-      --color-orange-400: rgba(230, 129, 97, 1);
-      --color-orange-500: rgba(168, 75, 47, 1);
-
-      /* RGB versions for opacity control */
-      --color-brown-600-rgb: 94, 82, 64;
-      --color-teal-500-rgb: 33, 128, 141;
-      --color-slate-900-rgb: 19, 52, 59;
-      --color-slate-500-rgb: 98, 108, 113;
-      --color-red-500-rgb: 192, 21, 47;
-      --color-red-400-rgb: 255, 84, 89;
-      --color-orange-500-rgb: 168, 75, 47;
-      --color-orange-400-rgb: 230, 129, 97;
-
-      /* Dark Fintech Theme */
-      --color-background: #050711;
-      --color-surface: #080a16;
-      --color-surface-alt: #0e111f;
-      --color-surface-elevated: #151827;
-      --color-primary: #ff7a2f;
-      --color-primary-soft: rgba(255, 122, 47, 0.12);
-      --color-primary-gradient: linear-gradient(135deg, #ffb347, #ff7a2f);
-      --color-accent: #ffb347;
-      --color-accent-soft: rgba(255, 179, 71, 0.16);
-      --color-border-subtle: rgba(255, 255, 255, 0.06);
-      --color-border-strong: rgba(255, 255, 255, 0.16);
-      --color-text: #f5f5f7;
-      --color-text-muted: #a0a3b1;
-      --color-text-soft: #6e7182;
-      --color-shadow-strong: 0 32px 80px rgba(0, 0, 0, 0.8);
-
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      --radius-full: 999px;
-
-      --space-2: 2px;
-      --space-4: 4px;
-      --space-6: 6px;
-      --space-8: 8px;
-      --space-10: 10px;
-      --space-12: 12px;
-      --space-16: 16px;
-      --space-20: 20px;
-      --space-24: 24px;
-      --space-32: 32px;
-      --space-40: 40px;
-      --space-48: 48px;
-      --space-64: 64px;
-
-      --font-family-base: system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Roboto, sans-serif;
-
-      --transition-fast: 160ms cubic-bezier(0.22, 0.61, 0.36, 1);
-      --transition-med: 260ms cubic-bezier(0.22, 0.61, 0.36, 1);
-      --transition-slow: 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: var(--font-family-base);
-      background: radial-gradient(circle at top, #181b2b 0, #050711 50%, #020308 100%);
-      color: var(--color-text);
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      color-scheme: dark;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-#cursor-glow {
-  width: 18px;
-  height: 18px;
-  position: fixed;
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(circle,#ff7a2f,#ffb347);
-  box-shadow: 0 0 18px rgba(255,122,47,0.9);
-  transform: translate(-50%,-50%);
-  transition: transform 0.05s linear;
-  z-index: 1000;
-}
-
-@media (max-width:900px){
-  #cursor-glow{display:none;} 
-}
-
-    .page {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, rgba(255, 179, 71, 0.09), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255, 122, 47, 0.09), transparent 55%);
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    .page::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        linear-gradient(120deg, rgba(255, 179, 71, 0.06), transparent 40%),
-        radial-gradient(circle at 20% 0%, rgba(255, 122, 47, 0.14), transparent 60%);
-      mix-blend-mode: screen;
-      opacity: 0.7;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-inline: var(--space-16);
-    }
-
-    /* NAVBAR */
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(20px);
-      background:
-        linear-gradient(to right, rgba(5, 7, 17, 0.9), rgba(10, 10, 26, 0.96));
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
-    }
-
-    .navbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-block: var(--space-10);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: var(--space-10);
-    }
-
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 12px;
-      background: radial-gradient(circle at 30% 0, #fff7e6, #ff7a2f 55%, #261208 100%);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.12),
-        0 18px 40px rgba(0, 0, 0, 0.9);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-text-main {
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      font-size: 15px;
-      text-transform: uppercase;
-    }
-
-    .brand-text-sub {
-      font-size: 11px;
-      text-transform: uppercase;
-      color: var(--color-text-soft);
-      letter-spacing: 0.16em;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: var(--space-16);
-      font-size: 13px;
-      color: var(--color-text-soft);
-    }
-
-    .nav-link {
-      position: relative;
-      padding-block: 6px;
-      padding-inline: 6px;
-      cursor: pointer;
-      border-radius: 999px;
-      transition: color var(--transition-fast), background var(--transition-fast),
-        transform var(--transition-fast);
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      inset-inline: 10%;
-      bottom: 2px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--color-primary-gradient);
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform var(--transition-med);
-    }
-
-    .nav-link:hover {
-      color: var(--color-text);
-      background: rgba(255, 255, 255, 0.04);
-      transform: translateY(-1px);
-    }
-
-    .nav-link:hover::after {
-      transform: scaleX(1);
-    }
-
-    .nav-link--active {
-      color: var(--color-text);
-      background: rgba(255, 122, 47, 0.16);
-    }
-
-    .nav-link--active::after {
-      transform: scaleX(1);
-    }
-
-    .nav-cta-group {
-      display: flex;
-      align-items: center;
-      gap: var(--space-10);
-    }
-
-    .badge-pill {
-      border-radius: var(--radius-full);
-      padding: 4px 10px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--color-text-soft);
-    }
-
-    .btn {
-      border-radius: var(--radius-full);
-      padding: 8px 16px;
-      font-size: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(11, 14, 30, 0.92);
-      color: var(--color-text);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: background var(--transition-fast),
-        transform var(--transition-fast),
-        box-shadow var(--transition-fast),
-        border-color var(--transition-fast);
-    }
-
-    .btn:hover:not(:disabled) {
-      background: rgba(22, 25, 42, 1);
-      transform: translateY(-1px);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
-    }
-
-    .btn[disabled] {
-      opacity: 0.55;
-      cursor: not-allowed;
-    }
-
-    .btn-primary {
-      background-image: var(--color-primary-gradient);
-      color: #120b05;
-      border-color: rgba(255, 189, 105, 0.2);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.06),
-        0 14px 50px rgba(255, 122, 47, 0.45);
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      transform: translateY(-1px) translateZ(0);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.12),
-        0 18px 65px rgba(255, 122, 47, 0.6);
-    }
-
-    .btn-ghost {
-      background: rgba(10, 12, 26, 0.9);
-      color: var(--color-text-muted);
-    }
-
-    /* HERO SECTION */
-
-    .hero {
-      padding-top: var(--space-40);
-      padding-bottom: var(--space-40);
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.1fr);
-      gap: var(--space-32);
-      align-items: center;
-    }
-
-    .hero-kicker-row {
-      display: flex;
-      align-items: center;
-      gap: var(--space-8);
-      margin-bottom: var(--space-12);
-      font-size: 11px;
-      color: var(--color-text-soft);
-    }
-
-    .kicker-pill {
-      padding: 3px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: radial-gradient(circle at top left, rgba(255, 235, 205, 0.16), rgba(9, 9, 18, 0.96));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .kicker-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--color-primary-gradient);
-      box-shadow: 0 0 0 1px rgba(255, 189, 105, 0.4);
-    }
-
-    .hero-heading {
-      font-size: clamp(30px, 4vw, 40px);
-      line-height: 1.12;
-      letter-spacing: 0.01em;
-      margin: 0 0 var(--space-12);
-    }
-
-    .hero-heading span.highlight {
-      background-image: var(--color-primary-gradient);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 30px rgba(255, 189, 105, 0.22);
-    }
-
-    .hero-subtitle {
-      margin: 0 0 var(--space-24);
-      font-size: 13px;
-      color: var(--color-text-muted);
-      max-width: 460px;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-10);
-      margin-bottom: var(--space-20);
-    }
-
-    .hero-meta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-16);
-      font-size: 11px;
-      color: var(--color-text-soft);
-    }
-
-    .hero-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-meta-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(255, 189, 105, 0.85);
-      box-shadow: 0 0 7px rgba(255, 189, 105, 0.8);
-    }
-
-    /* HERO LOGO VISUAL */
-
-    .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-logo-wrap {
-      padding: var(--space-24);
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at top, rgba(255, 189, 105, 0.25), transparent 70%),
-        radial-gradient(circle at bottom, rgba(6, 6, 14, 1), #050711 70%);
-      box-shadow: var(--color-shadow-strong);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      max-width: 320px;
-    }
-
-    .hero-logo-wrap img {
-      width: 100%;
-      border-radius: 18px;
-      filter: drop-shadow(0 0 25px rgba(255, 122, 47, 0.75));
-    }
-
-    /* SECTIONS GENERAL */
-
-    section {
-      padding-block: var(--space-40);
-    }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: var(--space-24);
-    }
-
-    .section-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--color-text-soft);
-      margin-bottom: var(--space-8);
-    }
-
-    .section-title {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    .section-subtitle {
-      margin-top: var(--space-8);
-      font-size: 13px;
-      color: var(--color-text-muted);
-      max-width: 500px;
-      margin-inline: auto;
-    }
-
-    .grid-3 {
-      display: grid;
-      gap: var(--space-16);
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .feature-card {
-      position: relative;
-      border-radius: 18px;
-      background: radial-gradient(circle at top left, rgba(255, 189, 105, 0.14), rgba(8, 8, 16, 0.96));
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: var(--space-16);
-      box-shadow: 0 14px 45px rgba(0, 0, 0, 0.9);
-      overflow: hidden;
-      isolation: isolate;
-      transform-origin: center;
-      transform: translateY(0) translateZ(0);
-      transition: transform var(--transition-med), box-shadow var(--transition-med),
-        border-color var(--transition-med), background var(--transition-med);
-    }
-
-    .feature-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top, rgba(255, 189, 105, 0.18), transparent 60%);
-      opacity: 0;
-      transition: opacity var(--transition-med);
-      pointer-events: none;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-6px) translateZ(0);
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.95);
-      border-color: rgba(255, 189, 105, 0.4);
-    }
-
-    .feature-card:hover::before {
-      opacity: 1;
-    }
-
-    .feature-icon-shell {
-      width: 34px;
-      height: 34px;
-      border-radius: 14px;
-      background: radial-gradient(circle at top, #fff7e6, #ff7a2f 70%, #261208 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-10);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.16),
-        0 18px 40px rgba(0, 0, 0, 0.9);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-icon-shell span {
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      background: rgba(10, 10, 18, 0.88);
-    }
-
-    .feature-title {
-      font-size: 14px;
-      margin-bottom: var(--space-6);
-    }
-
-    .feature-body {
-      font-size: 12px;
-      color: var(--color-text-muted);
-      margin-bottom: var(--space-10);
-    }
-
-    .feature-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 11px;
-      color: var(--color-text-soft);
-    }
-
-    .tag-pill {
-      border-radius: 999px;
-      padding: 3px 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(8, 8, 16, 0.96);
-    }
-
-    /* FILTER BUTTONS / SCHEME FILTERS */
-
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-10);
-      justify-content: center;
-      margin-bottom: var(--space-24);
-    }
-
-    .filter-select {
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(8, 8, 16, 0.96);
-      color: var(--color-text);
-      font-size: 12px;
-      min-width: 180px;
-      outline: none;
-    }
-
-    /* SCHEME LINK BUTTONS */
-
-    .scheme-link-btn {
-      display: inline-block;
-      padding: var(--space-10) var(--space-14);
-      border-radius: var(--radius-sm);
-      background: linear-gradient(135deg, #ffb347, #ff7a2f);
-      color: #120b05;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 500;
-      cursor: pointer;
-      border: none;
-      transition: all var(--transition-fast);
-      text-align: center;
-      margin-top: var(--space-8);
-    }
-
-    .scheme-link-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(255, 122, 47, 0.4);
-    }
-
-    /* INTERNSHIP PORTAL */
-
-    .internship-layout {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .inline-form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-10);
-      justify-content: center;
-      margin-bottom: var(--space-24);
-    }
-
-    .inline-input,
-    .inline-select {
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(8, 8, 16, 0.96);
-      color: var(--color-text);
-      font-size: 12px;
-      outline: none;
-      min-width: 160px;
-    }
-
-    .internship-results {
-      display: grid;
-      gap: var(--space-16);
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
-
-    .muted-note {
-      font-size: 12px;
-      color: var(--color-text-soft);
-      text-align: center;
-      margin-top: var(--space-12);
-    }
-
-    /* EXPENSE TRACKER */
-
-    #expense-tracker {
-      background: radial-gradient(circle at top right, rgba(255, 122, 47, 0.08), transparent 60%);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .tracker-grid {
-      display: grid;
-      gap: var(--space-20);
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      align-items: flex-start;
-    }
-
-    .tracker-card {
-      border-radius: 18px;
-      background: linear-gradient(140deg, rgba(7, 8, 18, 0.98), rgba(16, 17, 30, 0.98));
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      padding: var(--space-20);
-      box-shadow: 0 18px 55px rgba(0, 0, 0, 0.95);
-    }
-
-    .tracker-form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-12);
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 12px;
-    }
-
-    .field label {
-      color: var(--color-text-soft);
-    }
-
-    .field input {
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(8, 8, 16, 0.96);
-      color: var(--color-text);
-      outline: none;
-      font-size: 12px;
-    }
-
-    .tracker-result-main {
-      font-size: 26px;
-      font-weight: 600;
-      margin-bottom: var(--space-10);
-    }
-
-    .tracker-summary {
-      font-size: 13px;
-      color: var(--color-text-muted);
-      margin-bottom: var(--space-10);
-    }
-
-    .tracker-chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: var(--space-10);
-    }
-
-    .tracker-chip {
-      border-radius: 999px;
-      padding: 3px 9px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(8, 8, 16, 0.96);
-      font-size: 11px;
-      color: var(--color-text-soft);
-    }
-
-    .tracker-quote {
-      font-size: 12px;
-      color: var(--color-accent);
-      margin-top: var(--space-10);
-      font-style: italic;
-    }
-
-    /* FOOTER */
-
-    .footer {
-      padding-block: var(--space-24);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      background: radial-gradient(circle at top, rgba(255, 189, 105, 0.08), #04050b);
-      font-size: 11px;
-      color: var(--color-text-soft);
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: var(--space-10);
-      flex-wrap: wrap;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: var(--space-12);
-      flex-wrap: wrap;
-    }
-
-    /* SCROLL ANIMATIONS */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition:
-        opacity var(--transition-slow),
-        transform var(--transition-slow);
-    }
-
-    .reveal--visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 960px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .hero-visual {
-        order: -1;
-        margin-bottom: var(--space-20);
-      }
-      .grid-3 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .tracker-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 720px) {
-      .nav-links {
-        display: none;
-      }
-      .hero {
-        padding-top: var(--space-32);
-      }
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .tracker-form-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-  </style>
-</head>
-<body>
-  
-  <div class="page">
-    <header class="navbar">
-      <div class="container navbar-inner">
-        <div class="brand">
-          <div class="brand-logo"></div>
-          <div>
-            <div class="brand-text-main">YojnaMitra</div>
-            <div class="brand-text-sub">Empowering Financial Futures</div>
-          </div>
-        </div>
-        <nav class="nav-links">
-          <a href="#overview" class="nav-link nav-link--active">Overview</a>
-          <a href="#schemes" class="nav-link">Schemes</a>
-          <a href="#internships" class="nav-link">Internships</a>
-          <a href="#expense-tracker" class="nav-link">Expense Tracker</a>
-          <a href="#policies" class="nav-link">Policies</a>
-<a href="#about" class="nav-link">About</a>
-<a href="#issues" class="nav-link">Student Issues</a>
-
-        </nav>
-        <div class="nav-cta-group">
-          <span class="badge-pill">Beta for Students</span>
-          <button class="btn btn-ghost" type="button">Docs</button>
-          <button onclick="loginWithGoogle()" class="btn btn-primary">Sign in with Google</button>
-
-          <div id="user-profile" style="display: none; align-items: center; gap: var(--space-10); padding: var(--space-8); border-radius: var(--radius-full); background: rgba(255, 122, 47, 0.15); border: 1px solid rgba(255, 189, 105, 0.3);">
-            <span id="user-email" style="font-size: 12px; color: var(--color-accent);"></span>
-            <button id="logout-btn" class="btn btn-ghost" type="button" style="padding: 4px 12px; font-size: 11px;">Logout</button>
-          </div>
-          <input type="hidden" id="google-signin" />
-        </div>
-      </div>
-    </header>
-
-    <main>
-      <!-- HERO -->
-      <section class="hero" id="overview">
-        <div class="container hero-inner">
-          <div class="hero-copy reveal">
-            <div class="hero-kicker-row">
-              <div class="kicker-pill">
-                <span class="kicker-dot"></span>
-                <span>Live for Students • Beta</span>
-              </div>
-              <span>NSP + bank schemes + internships in one place.</span>
-            </div>
-            <h1 class="hero-heading">
-              Intelligent <span class="highlight">Yojna</span> & Money<br />
-              guidance for <span class="highlight">students.</span>
-            </h1>
-            <p class="hero-subtitle">
-              YojnaMitra is your AI-first console for discovering scholarships, internships and
-              managing daily expenses — tuned for students, graduates and early professionals.
-            </p>
-            <div class="hero-cta-row">
-              <button id="find-schemes-btn" class="btn btn-primary" type="button">Find schemes for me →</button>
-              <button class="btn btn-ghost" type="button" disabled title="Product tour coming soon">Watch product tour</button>
-            </div>
-            <div class="hero-meta-row">
-              <div class="hero-meta-item">
-                <span class="hero-meta-dot"></span>
-                <span>10,000+ student journeys simplified (demo)</span>
-              </div>
-              <div class="hero-meta-item">
-                <span class="hero-meta-dot"></span>
-                <span>₹500 Cr+ potential funding mapped</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Logo visual instead of graphs -->
-          <div class="hero-visual reveal">
-            <div class="hero-logo-wrap">
-              <!-- Change src to your actual logo path if different -->
-              <img src="https://i.ibb.co/zWCDBk5p/Chat-GPT-Image-Dec-6-2025-02-04-19-PM.png" alt="Chat-GPT-Image-Dec-6-2025-02-04-19-PM" border="0">
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SCHEMES SECTION -->
-      <section id="schemes">
-        <div class="container">
-          <div class="section-heading reveal">
-            <div class="section-kicker">Schemes cockpit</div>
-            <h2 class="section-title">All your NSP & government schemes in one radar view.</h2>
-            <p class="section-subtitle">
-              Data is fetched from the official National Scholarship Portal & mapped into simple cards.
-              Click any scheme to continue on NSP. Use filters to see what matches you best.
-            </p>
-          </div>
-
-          <!-- Filter controls -->
-          <div class="filter-row reveal">
-            <select id="scheme-level-filter" class="filter-select">
-              <option value="all">All education levels</option>
-              <option value="school">School Student (Class 1–12)</option>
-              <option value="ug">Undergraduate</option>
-              <option value="pg">Postgraduate</option>
-              <option value="other">Diploma / Professional</option>
-            </select>
-            <select id="scheme-type-filter" class="filter-select">
-              <option value="all">All scheme types</option>
-              <option value="merit">Merit based</option>
-              <option value="means">Means based</option>
-              <option value="category">SC / ST / OBC / Minority</option>
-              <option value="female">Girl student focused</option>
-            </select>
-          </div>
-
-          <!-- Dynamic schemes grid -->
-          <div id="schemes-grid" class="grid-3"></div>
-
-          <p class="muted-note">
-            Official applications and final eligibility always happen on
-            <a href="https://scholarships.gov.in/Students" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">NSP</a>.
-            YojnaMitra only helps you explore and understand options faster.
-          </p>
-        </div>
-      </section>
-
-      <!-- INTERNSHIPS – INNOVATIVE PORTAL -->
-      <section id="internships" style="border-top: 1px solid rgba(255, 255, 255, 0.06);">
-        <div class="container">
-          <div class="section-heading reveal">
-            <div class="section-kicker">Internship cockpit</div>
-            <h2 class="section-title">Smart matches from verified government internship portals.</h2>
-            <p class="section-subtitle">
-              Tell us your graduation year and interest. We’ll surface curated internship streams from
-              Skill India Digital, NITI Aayog and PM Internship schemes, and then take you to the
-              official portals to apply.
-            </p>
-          </div>
-
-          <div class="internship-layout">
-            <!-- Detail form first -->
-            <form id="internship-form" class="inline-form reveal">
-              <select id="internship-year" class="inline-select" required>
-                <option value="">Your current year</option>
-                <option value="1">1st year</option>
-                <option value="2">2nd year</option>
-                <option value="3">3rd year</option>
-                <option value="4">4th year / Final</option>
-                <option value="grad">Graduate (0–2 yrs)</option>
-              </select>
-
-              <select id="internship-domain" class="inline-select">
-                <option value="any">Any domain</option>
-                <option value="policy">Policy / Governance</option>
-                <option value="skills">Skill-based / Technical</option>
-                <option value="social">Social impact / Community</option>
-                <option value="finance">Finance / Economics</option>
-              </select>
-
-              <button type="submit" class="btn btn-primary">Show opportunities</button>
-            </form>
-
-            <!-- Dynamic results -->
-            <div id="internship-results" class="internship-results reveal"></div>
-
-            <div class="muted-note">
-              We route you only to official portals:
-              <a href="https://www.skillindiadigital.gov.in/internship" target="_blank" rel="noopener noreferrer">Skill India Digital</a>,
-              <a href="https://niti.gov.in/internship" target="_blank" rel="noopener noreferrer">NITI Aayog</a>,
-              <a href="https://www.myscheme.gov.in/schemes/pmis" target="_blank" rel="noopener noreferrer">PM Internship (myScheme)</a>.
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="policies" style="border-top:1px solid rgba(255,255,255,0.06);">
-  <div class="container">
-    <div class="section-heading reveal">
-      <div class="section-kicker">Finance Policies</div>
-      <h2 class="section-title">Bank & Government Financial Policies</h2>
-      <p class="section-subtitle">
-        Explore policies that reduce loan burdens — including interest subsidies, tax deductions (80E), startup support, student banking & credit tips.
-      </p>
-    </div>
-
-    <div class="filter-row reveal">
-      <select id="policy-filter" class="filter-select">
-        <option value="all">Show All</option>
-        <option value="loan">Education Loans</option>
-        <option value="subsidy">Interest Subsidy</option>
-        <option value="tax">Tax Benefits</option>
-        <option value="startup">Startup Support</option>
-      </select>
-    </div>
-
-    <div id="policy-grid" class="grid-3"></div>
-
-    <p class="muted-note">
-      These links redirect to verified government or bank policy pages for accuracy.
-    </p>
-  </div>
-</section>
-
-
-      <!-- EXPENSE TRACKER SECTION -->
-      <section id="expense-tracker">
-        <div class="container">
-          <div class="section-heading reveal">
-            <div class="section-kicker">Daily money coach</div>
-            <h2 class="section-title">Expense Tracker – know where every rupee goes.</h2>
-            <p class="section-subtitle">
-              Enter your monthly income and expenses. YojnaMitra will track your savings,
-              show how healthy your spending is, and suggest ways to earn more through skills,
-              freelancing and internships.
-            </p>
-          </div>
-
-          <div class="tracker-grid">
-            <!-- Form side -->
-            <div class="tracker-card reveal">
-              <h3 style="margin-top:0;margin-bottom:10px;font-size:16px;">Step 1 – Add your income</h3>
-              <div class="tracker-form-grid" style="margin-bottom:14px;">
-                <div class="field">
-                  <label for="income-main">Monthly pocket money / stipend (₹)</label>
-                  <input type="number" id="income-main" placeholder="e.g. 5000" min="0" />
-                </div>
-                <div class="field">
-                  <label for="income-side">Side income (tuition, part-time, etc.) (₹)</label>
-                  <input type="number" id="income-side" placeholder="e.g. 2000" min="0" />
-                </div>
-              </div>
-
-              <h3 style="margin-top:10px;margin-bottom:10px;font-size:16px;">Step 2 – Add your monthly expenses</h3>
-              <div class="tracker-form-grid">
-                <div class="field">
-                  <label for="exp-rent">Hostel / PG / Rent (₹)</label>
-                  <input type="number" id="exp-rent" placeholder="e.g. 3000" min="0" />
-                </div>
-                <div class="field">
-                  <label for="exp-food">Food & snacks (₹)</label>
-                  <input type="number" id="exp-food" placeholder="e.g. 2500" min="0" />
-                </div>
-                <div class="field">
-                  <label for="exp-travel">Travel / commute (₹)</label>
-                  <input type="number" id="exp-travel" placeholder="e.g. 800" min="0" />
-                </div>
-                <div class="field">
-                  <label for="exp-fees">College / coaching fees (₹)</label>
-                  <input type="number" id="exp-fees" placeholder="e.g. 1500" min="0" />
-                </div>
-                <div class="field">
-                  <label for="exp-fun">Entertainment / subscriptions (₹)</label>
-                  <input type="number" id="exp-fun" placeholder="e.g. 600" min="0" />
-                </div>
-                <div class="field">
-                  <label for="exp-other">Other expenses (₹)</label>
-                  <input type="number" id="exp-other" placeholder="e.g. 400" min="0" />
-                </div>
-              </div>
-
-              <div style="margin-top:16px;display:flex;justify-content:flex-end;">
-                <button id="calc-expense-btn" class="btn btn-primary" type="button">
-                  Track my savings →
-                </button>
-              </div>
-            </div>
-            <div id="cursor-glow"></div>
-
-
-            <!-- Result side -->
-            <div class="tracker-card reveal">
-              <h3 style="margin-top:0;margin-bottom:6px;font-size:16px;">Your monthly snapshot</h3>
-              <div id="tracker-result-main" class="tracker-result-main">₹0 saved</div>
-              <div id="tracker-summary" class="tracker-summary">
-                Fill the details on the left and we’ll show your savings story.
-              </div>
-
-              <div id="tracker-chip-row" class="tracker-chip-row">
-                <!-- dynamic chips -->
-              </div>
-
-              <div id="tracker-suggestions" class="tracker-summary"></div>
-              <div id="tracker-quote" class="tracker-quote">
-                “Saving even ₹50 regularly is your first internship with your future self.”
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <section id="issues" style="background:rgba(255,122,47,0.05);border-top:1px solid rgba(255,255,255,0.06);padding-bottom:60px;">
-  <div class="container">
-    <div class="section-heading reveal">
-      <div class="section-kicker">Student Voice</div>
-      <h2 class="section-title">Tell Us Your Struggles</h2>
-      <p class="section-subtitle">
-        Thousands of students deal with the same financial stress. Sharing your experience helps us improve solutions — and helps others feel less alone.
-      </p>
-    </div>
-
-    <div class="tracker-card reveal">
-      <input id="issue-name" type="text" placeholder="Your name" class="inline-input" style="width:100%;margin-bottom:10px;">
-      <textarea id="issue-text" placeholder="Describe your issue (loans, expenses, scholarships, hostel, bills, etc.)" style="width:100%;padding:12px;border-radius:12px;background:rgba(8,8,16,0.96);color:white;border:1px solid rgba(255,255,255,0.12);" rows="4"></textarea>
-      
-      <button id="submit-issue" class="btn btn-primary" style="margin-top:12px;">Submit →</button>
-    </div>
-
-    <div id="issue-list" class="internship-results reveal" style="margin-top:24px;"></div>
-  </div>
-</section>
-<section id="about" style="border-top:1px solid rgba(255,255,255,0.06); padding-bottom:60px;">
-  <div class="container">
-    <div class="section-heading reveal">
-      <div class="section-kicker">Who Are We?</div>
-      <h2 class="section-title">Meet Team Zenith</h2>
-      <p class="section-subtitle">
-        A group of first-year B.Tech students who believe finances shouldn’t stop dreams.
-      </p>
-    </div>
-
-    <div class="tracker-card reveal" style="text-align:center;">
-      <img src="https://i.ibb.co/zWCDBk5p/Chat-GPT-Image-Dec-6-2025-02-04-19-PM.png" style="width:120px;margin-bottom:16px;filter:drop-shadow(0 0 20px rgba(255,122,47,0.6));">
-      <p style="font-size:14px;color:#bbb;margin-bottom:18px;">
-        We didn’t build YojnaMitra as a project — we built it as something we wish **we had when we started college**.<br><br>
-        Our mission: Make financial guidance for students **simple, accessible & judgement-free.**
-      </p>
-
-      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
-        <a class="scheme-link-btn" href="#">Instagram</a>
-        <a class="scheme-link-btn" href="#">LinkedIn</a>
-        <a class="scheme-link-btn" href="#">GitHub</a>
-        <a class="scheme-link-btn" href="#">Discord Community</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <div>© 2025 YojnaMitra • Built for students with ❤️ and ☕, by students.</div>
-        <div class="footer-links">
-          <span>Terms</span>
-          <span>Privacy</span>
-          <span>NSP guide</span>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    const policyData = [
-  {title:"Interest Subsidy Scheme for Educational Loans", type:"loan", url:"https://www.vidyalakshmi.co.in", tag:"Subsidy • Govt", desc:"Support for students taking education loans from scheduled banks, linked to income criteria."},
-  {title:"Section 80E Tax Deduction", type:"tax", url:"https://incometaxindia.gov.in", tag:"Tax Benefit", desc:"Tax deduction benefit on interest paid on education loans (no maximum cap)."},
-  {title:"Startup India Student Policy", type:"startup", url:"https://www.startupindia.gov.in", tag:"Startup", desc:"Policy support for students building businesses — incubation, grants & mentorship."},
-  {title:"Public Sector Bank Student Credit Card (WB)", type:"loan", url:"https://wbscc.wb.gov.in", tag:"Student Loan", desc:"Low-interest student credit facility available for eligible students pursuing higher education."}
-];
-
-const policyGrid = document.getElementById("policy-grid");
-const policyFilter = document.getElementById("policy-filter");
-
-function renderPolicies() {
-  policyGrid.innerHTML = "";
-  const selected = policyFilter.value;
-
-  policyData
-    .filter(p => selected === "all" || p.type === selected)
-    .forEach(p => {
-      const card = document.createElement("article");
-      card.className = "feature-card";
-      card.innerHTML = `
-        <div class="feature-icon-shell"><span></span></div>
-        <h3 class="feature-title">${p.title}</h3>
-        <p class="feature-body">${p.desc}</p>
-        <div class="feature-meta">
-          <span class="tag-pill">${p.tag}</span>
-          <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="scheme-link-btn">Read Policy →</a>
-        </div>
-      `;
-      policyGrid.appendChild(card);
-    });
-}
-policyFilter.addEventListener("change", renderPolicies);
-renderPolicies();
-
-    // Scroll reveal animation
-    const revealEls = document.querySelectorAll(".reveal");
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal--visible");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-
-    revealEls.forEach((el) => io.observe(el));
-
-    // Smooth nav active state
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".nav-link");
-
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            navLinks.forEach((link) => {
-              link.classList.toggle(
-                "nav-link--active",
-                link.getAttribute("href") === `#${entry.target.id}`
-              );
-            });
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-
-    sections.forEach((section) => sectionObserver.observe(section));
-
-    // "Find schemes" CTA scroll
-    document.getElementById("find-schemes-btn")?.addEventListener("click", () => {
-      const target = document.getElementById("schemes");
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    });
-
-    // Google Login Handler (demo)
-    window.onGoogleSignIn = function (response) {
-      console.log("Google Sign-In response:", response);
-      let userEmail = "User";
-      try {
-        if (response.credential) {
-          const payload = JSON.parse(atob(response.credential.split(".")[1]));
-          if (payload && payload.email) userEmail = payload.email;
-        }
-      } catch (e) {
-        console.warn("Unable to decode token", e);
-      }
-      document.getElementById("user-email").textContent = userEmail;
-      document.getElementById("login-btn").style.display = "inline-flex";
-      document.getElementById("login-btn").style.display = "none";
-      document.getElementById("user-profile").style.display = "flex";
-    };
-
-    // Logout Handler
-    document.getElementById("logout-btn").addEventListener("click", () => {
-      document.getElementById("user-email").textContent = "";
-      document.getElementById("login-btn").style.display = "inline-flex";
-      document.getElementById("user-profile").style.display = "none";
-    });
-
-    // -------------------------------
-    // NSP Schemes – demo dynamic data
-    // -------------------------------
-    // In a real version you would fetch from your backend which talks to NSP.
-    const schemeData = [
-      {
-        title: "Central Sector Scholarship for College & University Students",
-        level: "ug",
-        type: "merit",
-        brief: "Merit-based support for UG/PG students with strong academic performance.",
-        tag: "Central • Merit",
-        url: "https://scholarships.gov.in/Students"
-      },
-      {
-        title: "Post-Matric Scholarship for SC Students",
-        level: "ug",
-        type: "category",
-        brief: "Fee & maintenance support for SC students pursuing post-matric education.",
-        tag: "SC • Post-Matric",
-        url: "https://scholarships.gov.in/Students"
-      },
-      {
-        title: "Pre-Matric Scholarship for OBC Students",
-        level: "school",
-        type: "category",
-        brief: "Scholarship for OBC school students to reduce dropout at early stages.",
-        tag: "OBC • Pre-Matric",
-        url: "https://scholarships.gov.in/Students"
-      },
-      {
-        title: "National Means-cum-Merit Scholarship",
-        level: "school",
-        type: "means",
-        brief: "Support for Class 9–12 students from low-income families with good marks.",
-        tag: "Means + Merit",
-        url: "https://scholarships.gov.in/Students"
-      },
-      {
-        title: "PG Indira Gandhi Scholarship for Single Girl Child",
-        level: "pg",
-        type: "female",
-        brief: "Financial assistance for single girl child pursuing postgraduate studies.",
-        tag: "Girl Student • PG",
-        url: "https://scholarships.gov.in/Students"
-      },
-      {
-        title: "Maulana Azad National Fellowship / Minority Scholarships",
-        level: "other",
-        type: "category",
-        brief: "Support for students from minority communities in higher education.",
-        tag: "Minority • Higher Ed",
-        url: "https://scholarships.gov.in/Students"
-      }
-    ];
-
-    const schemesGrid = document.getElementById("schemes-grid");
-    const levelFilter = document.getElementById("scheme-level-filter");
-    const typeFilter = document.getElementById("scheme-type-filter");
-
-    function renderSchemes() {
-      const level = levelFilter.value;
-      const type = typeFilter.value;
-
-      const filtered = schemeData.filter((s) => {
-        const levelOk = level === "all" || s.level === level;
-        const typeOk = type === "all" || s.type === type;
-        return levelOk && typeOk;
-      });
-
-      schemesGrid.innerHTML = "";
-      if (!filtered.length) {
-        schemesGrid.innerHTML =
-          '<p style="font-size:12px;color:#a0a3b1;text-align:center;">No schemes match these filters yet. Try changing the level or type.</p>';
-        return;
-      }
-
-      filtered.forEach((s) => {
-        const card = document.createElement("article");
-        card.className = "feature-card";
-        card.innerHTML = `
-          <div class="feature-icon-shell"><span></span></div>
-          <h3 class="feature-title">${s.title}</h3>
-          <p class="feature-body">${s.brief}</p>
-          <div class="feature-meta">
-            <span class="tag-pill">${s.tag}</span>
-            <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="scheme-link-btn">
-              Apply on NSP →
-            </a>
-          </div>
-          <!-- Yojna Mitra Chat Button -->
-<button id="yojnaBtn">💬 Yojna Mitra</button>
-
-<div id="yojnaChat">
-  <iframe 
-    src="https://abhinavdixit.app.n8n.cloud/webhook/b50d345c-de63-4062-a158-41614604ecf8/chat"
-    width="100%" 
-    height="100%" 
-    style="border:none;">
-  </iframe>
-</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YojnaMitra – Student Finance Assistant</title>
 
 <style>
-#yojnaBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #ff9933;
-  color: white;
-  border: none;
-  padding: 14px 18px;
-  border-radius: 50px;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 9999;
+/* ---------------- BASE THEME ---------------- */
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:radial-gradient(circle at top,#181b2b,#050711 60%,#020308);
+  color:#f5f5f7;
 }
+a{text-decoration:none;color:inherit}
 
-#yojnaChat {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 360px;
-  height: 500px;
-  display: none;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-  z-index: 9999;
-  background: white;
+/* ---------------- NAV ---------------- */
+.navbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(5,7,17,.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
-</style>
-
-<script>
-document.getElementById("yojnaBtn").onclick = function () {
-  const chat = document.getElementById("yojnaChat");
-  chat.style.display = chat.style.display === "none" ? "block" : "none";
-};
-</script>
-
-        `;
-        schemesGrid.appendChild(card);
-      });
-    }
-
-    levelFilter.addEventListener("change", renderSchemes);
-    typeFilter.addEventListener("change", renderSchemes);
-    renderSchemes();
-
-    // -------------------------------
-    // Internship portal logic
-    // -------------------------------
-    const internshipForm = document.getElementById("internship-form");
-    const internshipResults = document.getElementById("internship-results");
-
-    const internshipData = [
-      {
-        title: "Skill India – Domain Skill Internship",
-        source: "Skill India Digital",
-        portal: "https://www.skillindiadigital.gov.in/internship",
-        years: ["1", "2", "3", "4", "grad"],
-        domains: ["skills", "any", "finance"],
-        tag: "Govt • Skill-based",
-        note: "Hands-on skill training with industry partners. Good for building a job-ready portfolio."
-      },
-      {
-        title: "NITI Aayog – Policy & Governance Internship",
-        source: "NITI Aayog",
-        portal: "https://niti.gov.in/internship",
-        years: ["3", "4", "grad"],
-        domains: ["policy", "social", "any"],
-        tag: "Policy • Governance",
-        note: "Exposure to policy research, data analysis and programme evaluation at a national think-tank."
-      },
-      {
-        title: "PM Internship – MyScheme",
-        source: "PM Internship (via myScheme)",
-        portal: "https://www.myscheme.gov.in/schemes/pmis",
-        years: ["2", "3", "4", "grad"],
-        domains: ["social", "skills", "any", "finance"],
-        tag: "Govt • Multi-domain",
-        note: "Short-term internships aligned to various ministries and flagship programmes."
-      }
-    ];
-
-    function renderInternships(year, domain) {
-      internshipResults.innerHTML = "";
-
-      const filtered = internshipData.filter((i) => {
-        const yearOk = i.years.includes(year);
-        const domainOk = i.domains.includes(domain) || domain === "any";
-        return yearOk && domainOk;
-      });
-
-      if (!filtered.length) {
-        internshipResults.innerHTML =
-          '<p style="font-size:12px;color:#a0a3b1;text-align:center;">No direct matches for this combo yet. Try another domain or year.</p>';
-        return;
-      }
-
-      filtered.forEach((i) => {
-        const card = document.createElement("article");
-        card.className = "feature-card";
-        card.innerHTML = `
-          <div class="feature-icon-shell"><span></span></div>
-          <h3 class="feature-title">${i.title}</h3>
-          <p class="feature-body">${i.note}</p>
-          <div class="feature-meta">
-            <span class="tag-pill">${i.tag}</span>
-            <a href="${i.portal}" target="_blank" rel="noopener noreferrer" class="scheme-link-btn">
-              View on ${i.source} →
-            </a>
-          </div>
-        `;
-        internshipResults.appendChild(card);
-      });
-    }
-
-    internshipForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const year = document.getElementById("internship-year").value;
-      const domain = document.getElementById("internship-domain").value || "any";
-      if (!year) {
-        alert("Please select your current year first.");
-        return;
-      }
-      renderInternships(year, domain);
-      internshipResults.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-
-    // -------------------------------
-    // Expense tracker logic
-    // -------------------------------
-    const calcBtn = document.getElementById("calc-expense-btn");
-    const resultMain = document.getElementById("tracker-result-main");
-    const summaryEl = document.getElementById("tracker-summary");
-    const chipRow = document.getElementById("tracker-chip-row");
-    const suggestionsEl = document.getElementById("tracker-suggestions");
-    const quoteEl = document.getElementById("tracker-quote");
-
-    function val(id) {
-      const v = parseFloat(document.getElementById(id).value);
-      return isNaN(v) ? 0 : v;
-    }
-
-    calcBtn.addEventListener("click", () => {
-      const incomeMain = val("income-main");
-      const incomeSide = val("income-side");
-      const totalIncome = incomeMain + incomeSide;
-
-      const expenses =
-        val("exp-rent") +
-        val("exp-food") +
-        val("exp-travel") +
-        val("exp-fees") +
-        val("exp-fun") +
-        val("exp-other");
-
-      const savings = totalIncome - expenses;
-      const rate = totalIncome > 0 ? (savings / totalIncome) * 100 : 0;
-
-      resultMain.textContent =
-        "₹" + Math.round(Math.abs(savings)).toLocaleString("en-IN") +
-        (savings >= 0 ? " saved / month" : " overspent / month");
-
-      let summaryText = "";
-      if (totalIncome === 0) {
-        summaryText = "Add at least one income source to see your saving capacity.";
-      } else {
-        summaryText =
-          "Total income: ₹" + totalIncome.toLocaleString("en-IN") +
-          " • Total expenses: ₹" + expenses.toLocaleString("en-IN") +
-          " • Savings rate: " + rate.toFixed(1) + "%";
-      }
-      summaryEl.textContent = summaryText;
-
-      chipRow.innerHTML = "";
-      const chips = [];
-      if (savings < 0) chips.push("Warning: Your expenses are higher than income.");
-      if (rate < 10 && totalIncome > 0) chips.push("Try to push savings to at least 10% of income.");
-      if (rate >= 10 && rate < 25) chips.push("Decent! Aim for 20–25% savings for safety.");
-      if (rate >= 25) chips.push("Great! You are in a strong savings zone.");
-      if (incomeSide === 0) chips.push("You can explore side gigs to boost earnings.");
-
-      chips.forEach((c) => {
-        const span = document.createElement("span");
-        span.className = "tracker-chip";
-        span.textContent = c;
-        chipRow.appendChild(span);
-      });
-
-      let suggestions = "";
-      if (savings < 0) {
-        suggestions =
-          "Right now you are in the red. Start with 2 quick wins: cut small ‘leaks’ like daily snacks / cabs, " +
-          "and look for a small side income – online tuitions, note-making, design gigs, or campus freelancing.";
-      } else if (rate < 10) {
-        suggestions =
-          "Savings are positive but thin. Try a simple rule: for every ₹100 you get, lock ₹10 in a separate savings account or UPI wallet you don’t touch.";
-      } else if (rate < 25) {
-        suggestions =
-          "Nice balance. You can start parking a part of your savings towards goals – exam fees, a laptop, or emergency buffer. Also track spends weekly, not just monthly.";
-      } else {
-        suggestions =
-          "You’re doing really well. This is a great time to invest in skills – courses, certifications, or tools that can help you earn more via freelancing, content or internships.";
-      }
-      suggestionsEl.textContent = suggestions;
-
-      let quote = "";
-      if (savings < 0) {
-        quote = "“Debt in student life is like extra weight in a race – the sooner you drop it, the faster you run.”";
-      } else if (rate < 10) {
-        quote = "“Savings are not what is left after spending; spending is what’s left after saving.”";
-      } else if (rate < 25) {
-        quote = "“Every rupee you save in college is a seed for the life you want after college.”";
-      } else {
-        quote = "“High savings + high skills = real financial freedom, not just a big salary.”";
-      }
-      quoteEl.textContent = quote;
-    });
-    document.addEventListener("mousemove", e => {
-  const cursor = document.getElementById("cursor-glow");
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
-const issues = [];
-const issueList = document.getElementById("issue-list");
-
-document.getElementById("submit-issue").addEventListener("click", () => {
-  const name = document.getElementById("issue-name").value.trim() || "Anonymous";
-  const text = document.getElementById("issue-text").value.trim();
-
-  if(!text) return alert("Please describe your issue.");
-
-  issues.unshift({name, text});
-  document.getElementById("issue-text").value = "";
-
-  renderIssues();
-});
-
-function renderIssues(){
-  issueList.innerHTML = "";
-  issues.slice(0,6).forEach(i=>{
-    const card = document.createElement("article");
-    card.className="feature-card";
-    card.innerHTML=`<strong>${i.name}</strong><p class="feature-body" style="margin-top:6px;">${i.text}</p>`;
-    issueList.appendChild(card);
-  });
+.nav-inner{
+  max-width:1200px;margin:auto;
+  padding:12px 16px;
+  display:flex;justify-content:space-between;align-items:center;
 }
-
-
-    // Smooth cursor glow (optional feel)
-    document.addEventListener("mousemove", (e) => {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-      document.documentElement.style.setProperty("--mouse-x", mouseX + "px");
-      document.documentElement.style.setProperty("--mouse-y", mouseY + "px");
-    });
-  function loginWithGoogle() {
-  const clientId = "290504462887-3q9cus8sp9hfmp9pofsrogerd1p0g4fb.apps.googleusercontent.com"; // Replace with your OAuth Client ID
-  const redirectUri = "https://abhinavdiit.app.n8n.cloud/webhook/google-callback"; // Exact same as in Google Console
-
-  const url = `https://accounts.google.com/o/oauth2/v2/auth?` +
-              `client_id=${clientId}&` +
-              `redirect_uri=${encodeURIComponent(redirectUri)}&` +
-              `response_type=code&` +
-              `scope=openid%20email%20profile&` +
-              `access_type=offline&` +
-              `prompt=consent`;
-
-  window.location.href = url;
+.nav-links a{
+  margin-left:14px;
+  font-size:13px;
+  color:#a0a3b1;
 }
+.nav-links a.active{color:#fff}
 
-const url = new URLSearchParams(window.location.search);
-const token = url.get("token");
-
-if (token) {
-  localStorage.setItem("ym-token", token);
-  window.history.replaceState({}, "", "/");
-  renderLoggedInUser(token);
+/* ---------------- HERO ---------------- */
+.hero{
+  max-width:1200px;margin:auto;
+  padding:60px 16px;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:40px;
 }
-
-document.getElementById("login-btn").style.display = "none";
-document.getElementById("user-profile").style.display = "flex";
-document.getElementById("user-email").textContent = decoded.email;
-
-
-  </script>
-<!-- Yojna Mitra Floating Assistant -->
-<button id="ym-btn">💬 Yojna Mitra</button>
-
-<div id="ym-chat">
-  <div id="ym-header">
-    <span>Yojna Mitra</span>
-    <button id="ym-close">✕</button>
-  </div>
-
-  <div id="ym-messages">
-    <div class="bot">Namaste 👋  
-Main Yojna Mitra hoon. Aap schemes, internships ya policies ke baare me pooch sakte hain.</div>
-  </div>
-
-  <div id="ym-input-row">
-    <input id="ym-input" placeholder="Type your question…" />
-    <button id="ym-send">Send</button>
-  </div>
-</div>
-
-<style>
-#ym-btn{
-  position:fixed;bottom:20px;right:20px;
-  background:#ff7a2f;color:#120b05;
-  border:none;padding:14px 18px;
+.hero h1{
+  font-size:38px;
+  line-height:1.15;
+}
+.highlight{
+  background:linear-gradient(135deg,#ffb347,#ff7a2f);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.hero p{color:#a0a3b1;font-size:14px}
+.btn{
+  padding:10px 18px;
   border-radius:999px;
-  font-size:15px;cursor:pointer;
-  box-shadow:0 12px 30px rgba(255,122,47,.45);
-  z-index:99999;
+  border:none;
+  background:linear-gradient(135deg,#ffb347,#ff7a2f);
+  cursor:pointer;
+  font-weight:600;
 }
 
-#ym-chat{
-  position:fixed;bottom:90px;right:20px;
-  width:360px;height:520px;
-  background:#fff;border-radius:16px;
-  display:none;flex-direction:column;
-  box-shadow:0 25px 60px rgba(0,0,0,.45);
-  transform:translateY(20px) scale(.96);
-  opacity:0;
-  transition:all .35s ease;
-  z-index:99999;
-  overflow:hidden;
-}
+/* ---------------- SECTIONS ---------------- */
+section{padding:60px 16px}
+.container{max-width:1200px;margin:auto}
+.section-title{text-align:center;margin-bottom:24px}
 
-#ym-chat.open{
-  display:flex;
-  transform:translateY(0) scale(1);
-  opacity:1;
+/* ---------------- CARDS ---------------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;
 }
+.card{
+  background:rgba(8,8,16,.95);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:16px;
+}
+.card h3{margin-top:0}
 
-#ym-header{
+/* ---------------- CHAT ---------------- */
+#ym-btn{
+  position:fixed;right:20px;bottom:20px;
   background:#ff7a2f;
   color:#120b05;
-  padding:12px 14px;
+  border:none;
+  padding:14px 18px;
+  border-radius:999px;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(255,122,47,.45);
+  z-index:9999;
+}
+#ym-chat{
+  position:fixed;right:20px;bottom:90px;
+  width:360px;height:520px;
+  background:#fff;
+  border-radius:16px;
+  display:none;
+  flex-direction:column;
+  box-shadow:0 25px 60px rgba(0,0,0,.45);
+  overflow:hidden;
+  z-index:9999;
+}
+#ym-chat.open{display:flex}
+#ym-header{
+  background:#ff7a2f;
+  padding:12px;
   font-weight:600;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  display:flex;justify-content:space-between;
 }
-
-#ym-header button{
-  background:none;border:none;
-  font-size:16px;cursor:pointer;
-}
-
 #ym-messages{
-  flex:1;padding:12px;
+  flex:1;
+  padding:12px;
   overflow-y:auto;
   font-size:14px;
 }
-
-#ym-messages .bot,
-#ym-messages .user{
-  max-width:85%;
+.bot,.user{
+  max-width:80%;
   padding:8px 12px;
   border-radius:12px;
   margin-bottom:8px;
-  line-height:1.4;
 }
-
-#ym-messages .bot{
-  background:#f2f2f2;
-}
-
-#ym-messages .user{
-  background:#ffeddc;
-  margin-left:auto;
-}
-
+.bot{background:#f2f2f2}
+.user{background:#ffeddc;margin-left:auto}
 #ym-input-row{
   display:flex;
   border-top:1px solid #ddd;
 }
-
 #ym-input{
-  flex:1;border:none;
+  flex:1;
   padding:12px;
-  font-size:14px;
+  border:none;
   outline:none;
 }
-
 #ym-send{
+  padding:0 16px;
   background:#ff7a2f;
-  border:none;padding:0 16px;
+  border:none;
   cursor:pointer;
-  font-weight:600;
 }
 </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="navbar">
+  <div class="nav-inner">
+    <strong>YojnaMitra</strong>
+    <div class="nav-links">
+      <a href="#schemes">Schemes</a>
+      <a href="#internships">Internships</a>
+      <a href="#policies">Policies</a>
+      <a href="#expense">Expense</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Intelligent <span class="highlight">Yojna</span> & money guidance for <span class="highlight">students</span></h1>
+    <p>Discover scholarships, internships, policies and track expenses — all in one place.</p>
+    <button class="btn" onclick="document.getElementById('schemes').scrollIntoView({behavior:'smooth'})">
+      Find schemes →
+    </button>
+  </div>
+  <img src="https://i.ibb.co/zWCDBk5p/Chat-GPT-Image-Dec-6-2025-02-04-19-PM.png" style="max-width:320px">
+</div>
+
+<!-- SCHEMES -->
+<section id="schemes">
+  <div class="container">
+    <h2 class="section-title">Scholarship Schemes</h2>
+    <div class="grid" id="schemeGrid"></div>
+  </div>
+</section>
+
+<!-- INTERNSHIPS -->
+<section id="internships">
+  <div class="container">
+    <h2 class="section-title">Government Internships</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Skill India Internship</h3>
+        <a href="https://www.skillindiadigital.gov.in/internship" target="_blank">Apply →</a>
+      </div>
+      <div class="card">
+        <h3>NITI Aayog Internship</h3>
+        <a href="https://niti.gov.in/internship" target="_blank">Apply →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section id="policies">
+  <div class="container">
+    <h2 class="section-title">Financial Policies</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Education Loan Subsidy</h3>
+        <a href="https://www.vidyalakshmi.co.in" target="_blank">Read →</a>
+      </div>
+      <div class="card">
+        <h3>Section 80E Tax Benefit</h3>
+        <a href="https://incometaxindia.gov.in" target="_blank">Read →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPENSE -->
+<section id="expense">
+  <div class="container">
+    <h2 class="section-title">Expense Tracker</h2>
+    <input id="income" placeholder="Monthly income" type="number">
+    <input id="expenseInput" placeholder="Monthly expenses" type="number">
+    <button class="btn" onclick="calc()">Calculate</button>
+    <p id="result"></p>
+  </div>
+</section>
+
+<!-- CHAT -->
+<button id="ym-btn">💬 Yojna Mitra</button>
+
+<div id="ym-chat">
+  <div id="ym-header">
+    Yojna Mitra
+    <button onclick="toggleChat()">✕</button>
+  </div>
+  <div id="ym-messages">
+    <div class="bot">Namaste 👋 Aap kya jaanna chahte hain?</div>
+  </div>
+  <div id="ym-input-row">
+    <input id="ym-input" placeholder="Ask about schemes…" />
+    <button id="ym-send">Send</button>
+  </div>
+</div>
 
 <script>
-const ymBtn = document.getElementById("ym-btn");
-const ymChat = document.getElementById("ym-chat");
-const ymClose = document.getElementById("ym-close");
-const ymSend = document.getElementById("ym-send");
-const ymInput = document.getElementById("ym-input");
-const ymMessages = document.getElementById("ym-messages");
+/* --------- DATA --------- */
+const schemes=[
+ {title:"Central Sector Scholarship",url:"https://scholarships.gov.in/Students"},
+ {title:"Post-Matric SC Scholarship",url:"https://scholarships.gov.in/Students"},
+ {title:"NMMS Scholarship",url:"https://scholarships.gov.in/Students"}
+];
 
-ymBtn.onclick = () => ymChat.classList.add("open");
-ymClose.onclick = () => ymChat.classList.remove("open");
+const grid=document.getElementById("schemeGrid");
+schemes.forEach(s=>{
+  const d=document.createElement("div");
+  d.className="card";
+  d.innerHTML=`<h3>${s.title}</h3><a href="${s.url}" target="_blank">Apply →</a>`;
+  grid.appendChild(d);
+});
 
-function addMsg(text, cls){
-  const div=document.createElement("div");
-  div.className=cls;
-  div.textContent=text;
-  ymMessages.appendChild(div);
-  ymMessages.scrollTop=ymMessages.scrollHeight;
+/* --------- EXPENSE --------- */
+function calc(){
+  const i=Number(income.value||0);
+  const e=Number(expenseInput.value||0);
+  result.textContent=i-e>=0?`You save ₹${i-e}`:`Overspent by ₹${e-i}`;
 }
 
-ymSend.onclick = async () => {
-  const msg = ymInput.value.trim();
-  if(!msg) return;
+/* --------- CHAT --------- */
+const chat=document.getElementById("ym-chat");
+function toggleChat(){chat.classList.toggle("open")}
+ym-btn.onclick=toggleChat;
 
-  addMsg(msg,"user");
-  ymInput.value="";
-  addMsg("Typing…","bot");
-
+ym-send.onclick=async()=>{
+  const q=ym-input.value.trim();
+  if(!q) return;
+  ym-messages.innerHTML+=`<div class="user">${q}</div>`;
+  ym-input.value="";
+  ym-messages.innerHTML+=`<div class="bot">Typing…</div>`;
   try{
-    const res = await fetch(
-      "https://abhinavdixit.app.n8n.cloud/webhook/b50d345c-de63-4062-a158-41614604ecf8",
-      {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({ message: msg })
-      }
-    );
-
-    const data = await res.json();
-    ymMessages.lastChild.remove();
-
-    const reply =
-      data.output ||
-      data.reply ||
-      data.text ||
-      JSON.stringify(data);
-
-    addMsg(reply,"bot");
-  }catch(e){
-    ymMessages.lastChild.remove();
-    addMsg("Server se response nahi aaya. Please try again.","bot");
+    const r=await fetch("https://abhinavdixit.app.n8n.cloud/webhook/b50d345c-de63-4062-a158-41614604ecf8",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({message:q})
+    });
+    const d=await r.json();
+    document.querySelector("#ym-messages .bot:last-child").textContent=
+      d.output||d.reply||"Samajh gaya 👍";
+  }catch{
+    document.querySelector("#ym-messages .bot:last-child").textContent="Server issue.";
   }
 };
 </script>
+
 </body>
 </html>
-
