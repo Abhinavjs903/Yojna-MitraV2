@@ -807,6 +807,7 @@
   </style>
 </head>
 <body>
+  
   <div class="page">
     <header class="navbar">
       <div class="container navbar-inner">
@@ -1345,6 +1346,55 @@ renderPolicies();
               Apply on NSP →
             </a>
           </div>
+          <!-- Yojna Mitra Chat Button -->
+<button id="yojnaBtn">💬 Yojna Mitra</button>
+
+<div id="yojnaChat">
+  <iframe 
+    src="https://abhinavdixit.app.n8n.cloud/webhook/b50d345c-de63-4062-a158-41614604ecf8/chat"
+    width="100%" 
+    height="100%" 
+    style="border:none;">
+  </iframe>
+</div>
+
+<style>
+#yojnaBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff9933;
+  color: white;
+  border: none;
+  padding: 14px 18px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#yojnaChat {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 360px;
+  height: 500px;
+  display: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  z-index: 9999;
+  background: white;
+}
+</style>
+
+<script>
+document.getElementById("yojnaBtn").onclick = function () {
+  const chat = document.getElementById("yojnaChat");
+  chat.style.display = chat.style.display === "none" ? "block" : "none";
+};
+</script>
+
         `;
         schemesGrid.appendChild(card);
       });
@@ -1593,72 +1643,168 @@ document.getElementById("user-email").textContent = decoded.email;
 
 
   </script>
-<!-- Yojna Mitra Assistant -->
-<button id="yojnaBtn">💬 Yojna Mitra</button>
+<!-- Yojna Mitra Floating Assistant -->
+<button id="ym-btn">💬 Yojna Mitra</button>
 
-<div id="yojnaChat">
-  <div id="chatBox"></div>
-  <input id="chatInput" placeholder="Ask about schemes, internships..." />
-  <button id="sendBtn">Send</button>
+<div id="ym-chat">
+  <div id="ym-header">
+    <span>Yojna Mitra</span>
+    <button id="ym-close">✕</button>
+  </div>
+
+  <div id="ym-messages">
+    <div class="bot">Namaste 👋  
+Main Yojna Mitra hoon. Aap schemes, internships ya policies ke baare me pooch sakte hain.</div>
+  </div>
+
+  <div id="ym-input-row">
+    <input id="ym-input" placeholder="Type your question…" />
+    <button id="ym-send">Send</button>
+  </div>
 </div>
 
 <style>
-#yojnaBtn{
+#ym-btn{
   position:fixed;bottom:20px;right:20px;
-  background:#ff7a2f;color:#000;
+  background:#ff7a2f;color:#120b05;
   border:none;padding:14px 18px;
-  border-radius:999px;cursor:pointer;
-  z-index:9999;
+  border-radius:999px;
+  font-size:15px;cursor:pointer;
+  box-shadow:0 12px 30px rgba(255,122,47,.45);
+  z-index:99999;
 }
-#yojnaChat{
-  position:fixed;bottom:80px;right:20px;
-  width:340px;height:420px;
-  background:#fff;border-radius:12px;
+
+#ym-chat{
+  position:fixed;bottom:90px;right:20px;
+  width:360px;height:520px;
+  background:#fff;border-radius:16px;
   display:none;flex-direction:column;
-  box-shadow:0 20px 40px rgba(0,0,0,.4);
-  z-index:9999;
+  box-shadow:0 25px 60px rgba(0,0,0,.45);
+  transform:translateY(20px) scale(.96);
+  opacity:0;
+  transition:all .35s ease;
+  z-index:99999;
+  overflow:hidden;
 }
-#chatBox{
-  flex:1;padding:10px;
-  overflow-y:auto;font-size:14px;
+
+#ym-chat.open{
+  display:flex;
+  transform:translateY(0) scale(1);
+  opacity:1;
 }
-#chatInput{
-  border:none;border-top:1px solid #ddd;
-  padding:10px;width:100%;
+
+#ym-header{
+  background:#ff7a2f;
+  color:#120b05;
+  padding:12px 14px;
+  font-weight:600;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
-#sendBtn{
-  border:none;background:#ff7a2f;
-  padding:10px;cursor:pointer;
+
+#ym-header button{
+  background:none;border:none;
+  font-size:16px;cursor:pointer;
+}
+
+#ym-messages{
+  flex:1;padding:12px;
+  overflow-y:auto;
+  font-size:14px;
+}
+
+#ym-messages .bot,
+#ym-messages .user{
+  max-width:85%;
+  padding:8px 12px;
+  border-radius:12px;
+  margin-bottom:8px;
+  line-height:1.4;
+}
+
+#ym-messages .bot{
+  background:#f2f2f2;
+}
+
+#ym-messages .user{
+  background:#ffeddc;
+  margin-left:auto;
+}
+
+#ym-input-row{
+  display:flex;
+  border-top:1px solid #ddd;
+}
+
+#ym-input{
+  flex:1;border:none;
+  padding:12px;
+  font-size:14px;
+  outline:none;
+}
+
+#ym-send{
+  background:#ff7a2f;
+  border:none;padding:0 16px;
+  cursor:pointer;
+  font-weight:600;
 }
 </style>
 
 <script>
-const btn=document.getElementById("yojnaBtn");
-const chat=document.getElementById("yojnaChat");
-btn.onclick=()=>chat.style.display=chat.style.display==="flex"?"none":"flex";
+const ymBtn = document.getElementById("ym-btn");
+const ymChat = document.getElementById("ym-chat");
+const ymClose = document.getElementById("ym-close");
+const ymSend = document.getElementById("ym-send");
+const ymInput = document.getElementById("ym-input");
+const ymMessages = document.getElementById("ym-messages");
 
-document.getElementById("sendBtn").onclick=async()=>{
-  const input=document.getElementById("chatInput");
-  const msg=input.value.trim();
+ymBtn.onclick = () => ymChat.classList.add("open");
+ymClose.onclick = () => ymChat.classList.remove("open");
+
+function addMsg(text, cls){
+  const div=document.createElement("div");
+  div.className=cls;
+  div.textContent=text;
+  ymMessages.appendChild(div);
+  ymMessages.scrollTop=ymMessages.scrollHeight;
+}
+
+ymSend.onclick = async () => {
+  const msg = ymInput.value.trim();
   if(!msg) return;
 
-  const box=document.getElementById("chatBox");
-  box.innerHTML+=`<div><b>You:</b> ${msg}</div>`;
-  input.value="";
+  addMsg(msg,"user");
+  ymInput.value="";
+  addMsg("Typing…","bot");
 
-  const res=await fetch(
-    "https://abhinavdixit.app.n8n.cloud/webhook/b50d345c-de63-4062-a158-41614604ecf8",
-    {
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body:JSON.stringify({ message: msg })
-    }
-  );
+  try{
+    const res = await fetch(
+      "https://abhinavdixit.app.n8n.cloud/webhook/b50d345c-de63-4062-a158-41614604ecf8",
+      {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ message: msg })
+      }
+    );
 
-  const data=await res.json();
-  box.innerHTML+=`<div><b>Yojna Mitra:</b> ${data.output || "Please try again."}</div>`;
-  box.scrollTop=box.scrollHeight;
+    const data = await res.json();
+    ymMessages.lastChild.remove();
+
+    const reply =
+      data.output ||
+      data.reply ||
+      data.text ||
+      JSON.stringify(data);
+
+    addMsg(reply,"bot");
+  }catch(e){
+    ymMessages.lastChild.remove();
+    addMsg("Server se response nahi aaya. Please try again.","bot");
+  }
 };
 </script>
 </body>
 </html>
+
