@@ -807,7 +807,6 @@
   </style>
 </head>
 <body>
-  
   <div class="page">
     <header class="navbar">
       <div class="container navbar-inner">
@@ -1346,55 +1345,6 @@ renderPolicies();
               Apply on NSP →
             </a>
           </div>
-          <!-- Yojna Mitra Chat Button -->
-<button id="yojnaBtn">💬 Yojna Mitra</button>
-
-<div id="yojnaChat">
-  <iframe 
-    src="https://abhinavdixit.app.n8n.cloud/webhook/b50d345c-de63-4062-a158-41614604ecf8/chat"
-    width="100%" 
-    height="100%" 
-    style="border:none;">
-  </iframe>
-</div>
-
-<style>
-#yojnaBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #ff9933;
-  color: white;
-  border: none;
-  padding: 14px 18px;
-  border-radius: 50px;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 9999;
-}
-
-#yojnaChat {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 360px;
-  height: 500px;
-  display: none;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-  z-index: 9999;
-  background: white;
-}
-</style>
-
-<script>
-document.getElementById("yojnaBtn").onclick = function () {
-  const chat = document.getElementById("yojnaChat");
-  chat.style.display = chat.style.display === "none" ? "block" : "none";
-};
-</script>
-
         `;
         schemesGrid.appendChild(card);
       });
@@ -1643,6 +1593,72 @@ document.getElementById("user-email").textContent = decoded.email;
 
 
   </script>
+<!-- Yojna Mitra Assistant -->
+<button id="yojnaBtn">💬 Yojna Mitra</button>
+
+<div id="yojnaChat">
+  <div id="chatBox"></div>
+  <input id="chatInput" placeholder="Ask about schemes, internships..." />
+  <button id="sendBtn">Send</button>
+</div>
+
+<style>
+#yojnaBtn{
+  position:fixed;bottom:20px;right:20px;
+  background:#ff7a2f;color:#000;
+  border:none;padding:14px 18px;
+  border-radius:999px;cursor:pointer;
+  z-index:9999;
+}
+#yojnaChat{
+  position:fixed;bottom:80px;right:20px;
+  width:340px;height:420px;
+  background:#fff;border-radius:12px;
+  display:none;flex-direction:column;
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
+  z-index:9999;
+}
+#chatBox{
+  flex:1;padding:10px;
+  overflow-y:auto;font-size:14px;
+}
+#chatInput{
+  border:none;border-top:1px solid #ddd;
+  padding:10px;width:100%;
+}
+#sendBtn{
+  border:none;background:#ff7a2f;
+  padding:10px;cursor:pointer;
+}
+</style>
+
+<script>
+const btn=document.getElementById("yojnaBtn");
+const chat=document.getElementById("yojnaChat");
+btn.onclick=()=>chat.style.display=chat.style.display==="flex"?"none":"flex";
+
+document.getElementById("sendBtn").onclick=async()=>{
+  const input=document.getElementById("chatInput");
+  const msg=input.value.trim();
+  if(!msg) return;
+
+  const box=document.getElementById("chatBox");
+  box.innerHTML+=`<div><b>You:</b> ${msg}</div>`;
+  input.value="";
+
+  const res=await fetch(
+    "https://abhinavdixit.app.n8n.cloud/webhook/b50d345c-de63-4062-a158-41614604ecf8",
+    {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify({ message: msg })
+    }
+  );
+
+  const data=await res.json();
+  box.innerHTML+=`<div><b>Yojna Mitra:</b> ${data.output || "Please try again."}</div>`;
+  box.scrollTop=box.scrollHeight;
+};
+</script>
 </body>
 </html>
-
