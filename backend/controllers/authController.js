@@ -3,6 +3,9 @@
 // (Database integration will be added later)
 // ===============================
 
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
 // User Signup
 const signup = async (req, res) => {
   try {
