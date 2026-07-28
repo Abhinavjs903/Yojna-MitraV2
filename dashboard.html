@@ -1,0 +1,965 @@
+<!-- =========================================
+     YojnaMitra
+     Part 4: dashboard.html
+========================================= -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | YojnaMitra</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+<header class="navbar">
+
+
+<div class="container navbar-inner">
+
+
+<div class="brand">
+
+<div class="brand-logo"></div>
+
+<div>
+
+<div class="brand-text-main">
+YojnaMitra
+</div>
+
+<div class="brand-text-sub">
+Student Dashboard
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<nav class="nav-links">
+
+
+<a href="#schemes" class="nav-link nav-link--active">
+Schemes
+</a>
+
+
+<a href="#internships" class="nav-link">
+Internships
+</a>
+
+
+<a href="#policies" class="nav-link">
+Policies
+</a>
+
+
+<a href="#expense-tracker" class="nav-link">
+Expenses
+</a>
+
+
+<a href="#issues" class="nav-link">
+Student Voice
+</a>
+
+
+</nav>
+
+
+
+
+<div class="nav-cta-group">
+
+
+<span id="user-email" class="badge-pill">
+Student
+</span>
+
+
+<button id="logout-btn" class="btn btn-ghost">
+
+Logout
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+</header>
+
+
+
+
+
+
+<main>
+
+
+
+<!-- =========================
+     WELCOME SECTION
+========================= -->
+
+
+<section class="hero">
+
+
+<div class="container">
+
+
+<div class="hero-copy reveal">
+
+
+<div class="hero-kicker-row">
+
+
+<div class="kicker-pill">
+
+<span class="kicker-dot"></span>
+
+Dashboard Active
+
+</div>
+
+
+<span>
+Your financial command centre
+</span>
+
+
+</div>
+
+
+
+
+<h1 class="hero-heading">
+
+Welcome to your
+
+<span class="highlight">
+YojnaMitra
+</span>
+
+dashboard.
+
+</h1>
+
+
+
+
+<p class="hero-subtitle">
+
+Explore scholarships, internships, policies and track
+your personal finances from one place.
+
+</p>
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =========================
+     SCHOLARSHIPS
+========================= -->
+
+
+<section id="schemes">
+
+
+<div class="container">
+
+
+<div class="section-heading reveal">
+
+
+<div class="section-kicker">
+Scholarships
+</div>
+
+
+<h2 class="section-title">
+
+Discover opportunities made for you.
+
+</h2>
+
+
+<p class="section-subtitle">
+
+Filter scholarships based on education level
+and eligibility.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="filter-row">
+
+
+<select id="scheme-level-filter" class="filter-select">
+
+
+<option value="all">
+All education levels
+</option>
+
+
+<option value="school">
+School
+</option>
+
+
+<option value="ug">
+Undergraduate
+</option>
+
+
+<option value="pg">
+Postgraduate
+</option>
+
+
+<option value="other">
+Professional
+</option>
+
+
+</select>
+
+
+
+
+<select id="scheme-type-filter" class="filter-select">
+
+
+<option value="all">
+All types
+</option>
+
+
+<option value="merit">
+Merit Based
+</option>
+
+
+<option value="means">
+Means Based
+</option>
+
+
+<option value="category">
+Category Based
+</option>
+
+
+<option value="female">
+Girl Student
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div id="schemes-grid" class="grid-3"></div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =========================
+     INTERNSHIPS
+========================= -->
+
+
+<section id="internships">
+
+
+<div class="container">
+
+
+<div class="section-heading reveal">
+
+
+<div class="section-kicker">
+Internships
+</div>
+
+
+<h2 class="section-title">
+
+Find your next learning opportunity.
+
+</h2>
+
+
+<p class="section-subtitle">
+
+Discover verified internships according to your
+year and domain.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<form id="internship-form" class="inline-form">
+
+
+<select id="internship-year" class="inline-select">
+
+
+<option value="">
+Current Year
+</option>
+
+
+<option value="1">
+1st Year
+</option>
+
+
+<option value="2">
+2nd Year
+</option>
+
+
+<option value="3">
+3rd Year
+</option>
+
+
+<option value="4">
+Final Year
+</option>
+
+
+<option value="grad">
+Graduate
+</option>
+
+
+</select>
+
+
+
+
+
+<select id="internship-domain" class="inline-select">
+
+
+<option value="any">
+Any Domain
+</option>
+
+
+<option value="skills">
+Technical Skills
+</option>
+
+
+<option value="policy">
+Policy
+</option>
+
+
+<option value="finance">
+Finance
+</option>
+
+
+<option value="social">
+Social Impact
+</option>
+
+
+</select>
+
+
+
+
+<button class="btn btn-primary">
+
+Find Internships →
+
+</button>
+
+
+
+</form>
+
+
+
+
+
+<div id="internship-results" class="internship-results"></div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =========================
+     POLICIES
+========================= -->
+
+
+<section id="policies">
+
+
+<div class="container">
+
+
+<div class="section-heading reveal">
+
+
+<div class="section-kicker">
+Financial Policies
+</div>
+
+
+<h2 class="section-title">
+
+Understand student financial support.
+
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="filter-row">
+
+
+<select id="policy-filter" class="filter-select">
+
+
+<option value="all">
+All Policies
+</option>
+
+
+<option value="loan">
+Education Loans
+</option>
+
+
+<option value="subsidy">
+Subsidies
+</option>
+
+
+<option value="tax">
+Tax Benefits
+</option>
+
+
+<option value="startup">
+Startup Support
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+<div id="policy-grid" class="grid-3"></div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =========================
+     EXPENSE TRACKER
+========================= -->
+
+
+<section id="expense-tracker">
+
+
+<div class="container">
+
+
+<div class="section-heading">
+
+
+<div class="section-kicker">
+Money Coach
+</div>
+
+
+<h2 class="section-title">
+
+Track your monthly expenses.
+
+</h2>
+
+
+</div>
+
+
+
+
+
+
+<div class="tracker-grid">
+
+
+
+<div class="tracker-card">
+
+
+<h3>
+Income
+</h3>
+
+
+
+<div class="tracker-form-grid">
+
+
+<div class="field">
+
+<label>
+Monthly Income (£)
+</label>
+
+
+<input id="income-main" type="number" placeholder="5000">
+
+
+</div>
+
+
+
+
+<div class="field">
+
+
+<label>
+Side Income (£)
+</label>
+
+
+<input id="income-side" type="number" placeholder="1000">
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<h3>
+Expenses
+</h3>
+
+
+
+
+<div class="tracker-form-grid">
+
+
+<div class="field">
+
+<label>
+Rent / Hostel
+</label>
+
+
+<input id="exp-rent" type="number">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Food
+</label>
+
+
+<input id="exp-food" type="number">
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Travel
+</label>
+
+
+<input id="exp-travel" type="number">
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Fees
+</label>
+
+
+<input id="exp-fees" type="number">
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Entertainment
+</label>
+
+
+<input id="exp-fun" type="number">
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Other
+</label>
+
+
+<input id="exp-other" type="number">
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<button id="calc-expense-btn" class="btn btn-primary">
+
+Track Savings →
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="tracker-card">
+
+
+<h3>
+Monthly Snapshot
+</h3>
+
+
+
+<div id="tracker-result-main" class="tracker-result-main">
+
+£0 saved
+
+</div>
+
+
+
+<div id="tracker-summary" class="tracker-summary">
+
+Add your details to see insights.
+
+</div>
+
+
+
+<div id="tracker-chip-row" class="tracker-chip-row"></div>
+
+
+
+
+<div id="tracker-suggestions" class="tracker-summary"></div>
+
+
+
+
+<div id="tracker-quote" class="tracker-quote">
+
+"Small savings create big futures."
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =========================
+     STUDENT ISSUES
+========================= -->
+
+
+<section id="issues">
+
+
+<div class="container">
+
+
+<div class="section-heading">
+
+
+<div class="section-kicker">
+Student Voice
+</div>
+
+
+<h2 class="section-title">
+
+Share your challenges.
+
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="tracker-card">
+
+
+<input
+
+id="issue-name"
+
+class="inline-input"
+
+placeholder="Your name"
+
+>
+
+
+
+
+<textarea
+
+id="issue-text"
+
+rows="4"
+
+placeholder="Describe your issue"
+
+></textarea>
+
+
+
+
+<button id="submit-issue" class="btn btn-primary">
+
+Submit →
+
+</button>
+
+
+
+</div>
+
+
+
+
+<div id="issue-list" class="internship-results"></div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+</main>
+
+
+
+
+
+
+<footer class="footer">
+
+
+<div class="container footer-inner">
+
+
+<div>
+© 2026 YojnaMitra
+</div>
+
+
+<div class="footer-links">
+
+
+<span>
+Terms
+</span>
+
+
+<span>
+Privacy
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+</footer>
+
+
+
+</div>
+
+
+
+
+
+<script src="js/main.js"></script>
+
+<script src="js/schemes.js"></script>
+
+<script src="js/internships.js"></script>
+
+<script src="js/policies.js"></script>
+
+<script src="js/tracker.js"></script>
+
+<script src="js/issues.js"></script>
+
+<script src="js/auth.js"></script>
+
+
+</body>
+
+
+</html>
