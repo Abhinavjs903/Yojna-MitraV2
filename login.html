@@ -1,0 +1,277 @@
+<!-- =========================================
+     YojnaMitra
+     Part 3A: login.html
+========================================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login | YojnaMitra</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.auth-page {
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:20px;
+
+}
+
+
+.auth-card {
+
+width:100%;
+
+max-width:420px;
+
+background:
+linear-gradient(
+145deg,
+rgba(8,10,22,.95),
+rgba(16,18,35,.95)
+);
+
+border:
+
+1px solid rgba(255,255,255,.08);
+
+border-radius:20px;
+
+padding:32px;
+
+box-shadow:
+0 30px 80px rgba(0,0,0,.8);
+
+}
+
+
+
+.auth-title {
+
+font-size:28px;
+
+margin-bottom:8px;
+
+}
+
+
+
+.auth-subtitle {
+
+font-size:13px;
+
+color:var(--color-text-muted);
+
+margin-bottom:24px;
+
+}
+
+
+
+.auth-input {
+
+width:100%;
+
+padding:12px 16px;
+
+margin-bottom:14px;
+
+border-radius:999px;
+
+border:
+
+1px solid rgba(255,255,255,.15);
+
+background:#080a16;
+
+color:white;
+
+outline:none;
+
+}
+
+
+
+.auth-input:focus {
+
+border-color:#ff7a2f;
+
+}
+
+
+
+.auth-footer {
+
+margin-top:20px;
+
+text-align:center;
+
+font-size:13px;
+
+color:var(--color-text-muted);
+
+}
+
+
+.auth-footer a {
+
+color:#ffb347;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page auth-page">
+
+
+<div class="auth-card">
+
+
+<div class="brand" style="margin-bottom:24px;">
+
+<div class="brand-logo"></div>
+
+<div>
+
+<div class="brand-text-main">
+YojnaMitra
+</div>
+
+<div class="brand-text-sub">
+Student Finance AI
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<h1 class="auth-title">
+Welcome Back
+</h1>
+
+
+<p class="auth-subtitle">
+
+Login to access your scholarships,
+internships and financial dashboard.
+
+</p>
+
+
+
+
+
+<form id="login-form">
+
+
+<input
+
+type="email"
+
+id="login-email"
+
+class="auth-input"
+
+placeholder="Email address"
+
+required
+
+>
+
+
+
+
+<input
+
+type="password"
+
+id="login-password"
+
+class="auth-input"
+
+placeholder="Password"
+
+required
+
+>
+
+
+
+<button
+
+class="btn btn-primary"
+
+style="width:100%;justify-content:center;"
+
+type="submit"
+
+>
+
+Login →
+
+</button>
+
+
+</form>
+
+
+
+
+
+<div class="auth-footer">
+
+
+Don't have an account?
+
+
+<a href="signup.html">
+
+Create one
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<script src="js/auth.js"></script>
+
+
+</body>
+
+
+</html>
